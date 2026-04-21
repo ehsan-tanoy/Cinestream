@@ -79,12 +79,12 @@ async function fetchLiveHome(query) {
   homeLive.innerHTML = "";
   homeLive.style.display = "block";
 
-  data.results.slice(0, 6).forEach(movie => {
+  data.results.slice(0, 15).forEach(movie => {
     const div = document.createElement("div");
     div.classList.add("live-item");
 
     div.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" />
+      <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" onerror="this.onerror=null; this.src='blank_poster.png';"/>
       <p>${movie.title}</p>
     `;
 
@@ -112,6 +112,7 @@ const GENRE_MAP = {
   28: "Action",
   12: "Adventure",
   16: "Animation",
+  
   35: "Comedy",
   80: "Crime",
   99: "Documentary",
@@ -156,7 +157,11 @@ async function loadHero() {
     card.classList.add("hero-card");
 
     card.innerHTML = `
-      <img src="${IMG_URL + movie.poster_path}" />
+      <img src="${movie.poster_path 
+      ? IMG_URL + movie.poster_path 
+      : 'blank_poster.png'}" 
+    alt="Movie Poster"
+    onerror="this.onerror=null; this.src='blank_poster.png';" />
 
       <div class="hero-badge">
         ${movie.vote_average.toFixed(1)}
@@ -329,24 +334,118 @@ async function fetchMovies(url, containerId, append = false) {
   loading = false;
 }
 
+
+/* 🔐 LOAD WATCHLIST */
+function getWatchlist() {
+  return JSON.parse(localStorage.getItem("watchlist")) || [];
+}
+
+/* 💾 SAVE */
+function saveWatchlist(list) {
+  localStorage.setItem("watchlist", JSON.stringify(list));
+}
+
+/* 🔍 CHECK */
+function isInWatchlist(id) {
+  return getWatchlist().some(m => m.id == id);
+}
+
+/* 🔄 TOGGLE */
+function toggleWatchlist(movie) {
+  let list = getWatchlist();
+
+  if (isInWatchlist(movie.id)) {
+    list = list.filter(m => m.id != movie.id);
+  } else {
+    list.push({
+      id: movie.id,
+      title: movie.title,
+      poster: movie.poster_path,
+      year: movie.release_date?.split("-")[0],
+      rating: movie.vote_average
+    });
+  }
+
+  saveWatchlist(list);
+  
+}
+
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.className = "toast";
+
+  toast.classList.add(type, "show");
+
+  clearTimeout(toast._timer);
+
+  toast._timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
+}
+
 /* 🎥 CREATE CARD */
 function createCard(movie) {
   const div = document.createElement("div");
   div.classList.add("movie-card");
 
   div.innerHTML = `
-    <img loading="lazy" src="${IMG_URL + movie.poster_path}" />
+    <img loading="lazy" src="${movie.poster_path 
+      ? IMG_URL + movie.poster_path 
+      : 'blank_poster.png'}" 
+    alt="Movie Poster"
+    onerror="this.onerror=null; this.src='blank_poster.png';" />
 
-    <div class="badge left">
+    <div class="badge left shimmer">
   ${GENRE_MAP[movie.genre_ids?.[0]] || "Movie"}
 </div>
     <div class="badge right">${movie.vote_average?.toFixed(1) || "N/A"}</div>
 
+
+<div class="bookmark-btn">
+      <span class="material-symbols-rounded">bookmark</span>
+    </div>
+    
     <div class="overlay">
       <h3>${movie.title || movie.name}</h3>
       <p>${(movie.release_date || "").split("-")[0]}</p>
     </div>
   `;
+  
+  /* 🔐 WATCHLIST SYSTEM */
+  const bookmark = div.querySelector(".bookmark-btn");
+  const bookmarkIcon = div.querySelector(".bookmark-btn span");
+
+  // check existing
+  if (isInWatchlist(movie.id)) {
+    bookmark.classList.add("active");
+    }
+    
+    
+  bookmark.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  const already = isInWatchlist(movie.id);
+
+  toggleWatchlist(movie);
+
+  if (already) {
+    bookmark.classList.remove("active");
+    showToast("Removed from watchlist", "remove");
+  } else {
+    bookmark.classList.add("active");
+    showToast("Added to watchlist successfully", "success");
+  }
+
+});
+   
+    
+  
+
+
+  
   // 🔥 CLICK EVENT
   div.addEventListener("click", () => {
     window.location.href = `details.html?id=${movie.id}`;
@@ -382,6 +481,26 @@ function loadNew(page = 1, append = false) {
     append
   );
 }
+
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+/* 👀 SHOW / HIDE */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 1400) {
+    scrollBtn.classList.add("show");
+  } else {
+    scrollBtn.classList.remove("show");
+  }
+});
+
+/* ⬆️ SCROLL TO TOP */
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
 
 /* 🚀 INITIAL LOAD */
 loadTrending();
