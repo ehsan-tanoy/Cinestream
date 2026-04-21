@@ -32,7 +32,8 @@ function loadWatchlist() {
         <h3>${movie.title}</h3>
       </div>
 
-      <button class="remove-btn">✖</button>
+      <button class="remove-btn">  <span class="material-symbols-rounded"> bookmark_remove </span>
+      </button>
     `;
 
     div.querySelector(".remove-btn").onclick = (e) => {
