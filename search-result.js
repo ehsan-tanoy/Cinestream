@@ -79,9 +79,10 @@ async function loadResults() {
 
     // example genre mapping
     const GENRE_MAP = {
-      action: 28,
+  action: 28,
   adventure: 12,
   animation: 16,
+  anime: 16,
   comedy: 35,
   crime: 80,
   documentary: 99,
@@ -97,12 +98,63 @@ async function loadResults() {
   thriller: 53,
   war: 10752,
   western: 37,
-  tv_movie: 10770,
-  anime: 16
+  tv_movie: 10770
+  
     };
 
     url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${GENRE_MAP[genre.toLowerCase()]}`;
   }
+  
+  /* 🔐 LOAD WATCHLIST */
+function getWatchlist() {
+  return JSON.parse(localStorage.getItem("watchlist")) || [];
+}
+
+/* 💾 SAVE */
+function saveWatchlist(list) {
+  localStorage.setItem("watchlist", JSON.stringify(list));
+}
+
+/* 🔍 CHECK */
+function isInWatchlist(id) {
+  return getWatchlist().some(m => m.id == id);
+}
+
+/* 🔄 TOGGLE */
+function toggleWatchlist(movie) {
+  let list = getWatchlist();
+
+  if (isInWatchlist(movie.id)) {
+    list = list.filter(m => m.id != movie.id);
+  } else {
+    list.push({
+      id: movie.id,
+      title: movie.title,
+      poster: movie.poster_path,
+      year: movie.release_date?.split("-")[0],
+      rating: movie.vote_average
+    });
+  }
+
+  saveWatchlist(list);
+  
+}
+
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.className = "toast";
+
+  toast.classList.add(type, "show");
+
+  clearTimeout(toast._timer);
+
+  toast._timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
+}
 
   const res = await fetch(url);
   const data = await res.json();
@@ -121,11 +173,53 @@ async function loadResults() {
     div.classList.add("movie-card");
 
     div.innerHTML = `
-      <img src="${IMG_URL + movie.poster_path}" />
+      <img src="${movie.poster_path 
+      ? IMG_URL + movie.poster_path 
+      : 'blank_poster.png'}" 
+    alt="Movie Poster"
+    onerror="this.onerror=null; this.src='blank_poster.png';"/>
+      
+      <div class="badge left shimmer">
+  ${GENRE_MAP[movie.genre_ids?.[0]] || "Movie"}
+</div>
+    <div class="badge right">${movie.vote_average?.toFixed(1) || "N/A"}</div>
+    
+    <div class="bookmark-btn">
+      <span class="material-symbols-rounded">bookmark</span>
+    </div>
+      
       <div class="overlay">
         <h3>${movie.title}</h3>
+        <p>${(movie.release_date || "").split("-")[0]}</p>
       </div>
     `;
+    
+    /* 🔐 WATCHLIST SYSTEM */
+  const bookmark = div.querySelector(".bookmark-btn");
+  const bookmarkIcon = div.querySelector(".bookmark-btn span");
+
+  // check existing
+  if (isInWatchlist(movie.id)) {
+    bookmark.classList.add("active");
+    }
+    
+    
+  bookmark.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  const already = isInWatchlist(movie.id);
+
+  toggleWatchlist(movie);
+
+  if (already) {
+    bookmark.classList.remove("active");
+    showToast("Removed from watchlist", "remove");
+  } else {
+    bookmark.classList.add("active");
+    showToast("Added to watchlist successfully", "success");
+  }
+
+});
 
     div.onclick = () => {
       window.location.href = `details.html?id=${movie.id}`;
