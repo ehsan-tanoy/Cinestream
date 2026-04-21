@@ -114,14 +114,18 @@ async function fetchLiveHome(query) {
   homeLive.innerHTML = "";
   homeLive.style.display = "block";
 
-  data.results.slice(0, 6).forEach(movie => {
+  data.results.slice(0, 15).forEach(movie => {
     const div = document.createElement("div");
     div.classList.add("live-item");
 
     div.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" />
+      <img src=" https://image.tmdb.org/t/p/w200${movie.poster_path}" 
+    
+    onerror="this.onerror=null; this.src='blank_poster.png';" />
       <p>${movie.title}</p>
     `;
+
+
 
     div.onclick = () => {
       window.location.href = `details.html?id=${movie.id}`;
@@ -243,7 +247,12 @@ download
         <div class="similar-row">
           ${similar.slice(0, 12).map(m => `
             <div class="similar-card" onclick="goToMovie(${m.id})">
-              <img src="${IMG_URL + m.poster_path}" />
+              <img src="${m.poster_path 
+      ? IMG_URL + m.poster_path 
+      : 'blank_poster.png'}" 
+    alt="Movie Poster"
+    onerror="this.onerror=null; this.src='blank_poster.png';"/>
+              
             </div>
           `).join("")}
         </div>
