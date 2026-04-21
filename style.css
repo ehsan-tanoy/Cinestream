@@ -19,7 +19,7 @@ a {
 }
 
 :root {
-  --bg: #0d0d0d;
+  --bg: #1e1f21;
   --text: #ffffff;
   --card: #111;
   --accent: #00ccff;
@@ -228,7 +228,7 @@ h2 {
 /* ARROWS */
 .hero-btn {
   position: absolute;
-  top: 190px;
+  top: 140px;
   text-shadow: 0px 0px 6px rgba(0,0,0,0.9);
   z-index: 5;
   background: none;
@@ -417,47 +417,111 @@ h2 {
 .movie-card {
   position: relative;
   border-radius: 14px;
-  
+  overflow: hidden;
   background: var(--card);
   transition: transform 0.3s ease;
+  height: 220px;
 }
 
+/*
 .movie-card:hover {
   transform: scale(1.04);
 }
 
+*/
+
 /* POSTER */
 .movie-card img {
   width: 100%;
-  height: 240px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 14px;
+  
 }
 
 /* BADGES */
 .badge {
   position: absolute;
-  top: 12px;
-  padding: 3px 8px;
+  top: 14px;
+  
   font-size: 12px;
+  overflow :hidden;
   
 }
 
 .badge.left {
-  left: 8px;
-  background: #000;
-  color: #00ccff;
-  padding: 3px 10px;
-  border-radius: 8px;
+  left: 0px;
+  background: #00ccff;
+  color: #000;
+  padding: 2px 10px;
+  border-radius: 0 2px 2px 0;
   font-weight: 600;
+}
+
+.shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.6),
+        transparent
+    );
+    animation: shine 2.7s  infinite;
+}
+
+@keyframes shine {
+    100% {
+        left: 120%;
+    }
 }
 
 .badge.right {
   right: 8px;
   border-radius: 6px;
   color: #000;
+  padding: 3px 8px;
   font-weight: 600;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.8);
+}
+
+.bookmark-btn {
+  position: absolute;
+  top: 44px; /* badge er niche */
+  right: 9px;
+padding: 18px 17px 16px 17px;
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(0,0,0,0.3);
+
+  transition: all 0.6s ease;
+  cursor: pointer;
+}
+
+.bookmark-btn:active {
+    transform: scale(0.7);
+}
+
+.bookmark-btn span {
+  font-size: 25px;
+  color: #f2f2f2;
+}
+
+/* FILLED STATE */
+.bookmark-btn.active {
+    background: rgba(0,0,0,1);
+}
+.bookmark-btn.active span {
+  color: #00ccff;
 }
 
 /* OVERLAY */
@@ -466,7 +530,13 @@ h2 {
   bottom: 0;
   width: 100%;
   padding: 8px;
-  background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+  background: linear-gradient(
+  to top,
+  rgba(0,0,0,0.7) 0%,   
+  rgba(0,0,0,0.7) 40%, 
+  rgba(0,0,0,0.4) 70%,  
+  transparent 100%     
+);
 }
 
 .overlay h3 {
@@ -483,11 +553,16 @@ h2 {
 }
 
 /* 🔄 LOADER */
-.loader {
+
+.loader-wrapper {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 11;
+}
+
+.loader-icon {
   border: 4px solid #333;
   border-top: 4px solid #00ffcc;
   border-radius: 50%;
@@ -496,13 +571,15 @@ h2 {
   animation: spin 1s linear infinite;
 }
 
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
 .hidden {
   display: none;
 }
 
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
+
 
 /* ✨ FADE-IN */
 .movie-card {
@@ -578,15 +655,24 @@ h2 {
 
 #wList {
     display: flex ;
-    flex-direction: column ;
-    align-items :center ;
-    justify-content: center ;
-    backgroud: pink ;
-    width: 40px;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 4px 4px 2px;
+    width: 100%;
+    background: #ccc ;
+    border-radius: 8px;
+    opacity: 1;
+    
+}
+
+#wLisht:active {
+    opacity: 0.7;
 }
 
 #wList h4{
-    font-size: 9px;
+    font-size: 14px;
+    color: #111;
 }
 
 #wList span{
@@ -598,15 +684,21 @@ h2 {
 
 .remove-btn {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  background: red;
+  top: 42px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
   border: none;
-  color: #fff;
+  color: #ccc;
   border-radius: 50%;
-  padding: 2px 6px 4px 6px;
-  font-size: 11px;
+  padding: 4px 4px 1px 4px;
+  
   z-index: 1000;
+  font-weight: 600;
+  font-family: Inter;
+}
+
+.remove-btn span {
+    font-size: 22px;
 }
 
 .genres {
@@ -1053,4 +1145,88 @@ h2 {
   .hero-play-btn .material-icons {
     font-size: 48px;
   }
+}
+
+/* ⬆️ SCROLL TOP BUTTON */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 16px;
+  z-index: 200;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--accent);
+  color: #000;
+  border: none;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: all 0.3s ease;
+}
+
+/* SHOW */
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ICON */
+#scrollTopBtn span {
+  font-size: 22px;
+}
+
+/* TAP EFFECT */
+#scrollTopBtn:active {
+  transform: scale(0.9);
+}
+
+
+/* 🍞 TOAST */
+.toast {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: 70%;
+  background: rgba(0,0,0,0.9);
+  
+  padding: 8px 5px;
+  border-radius: 8px;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 999;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+}
+
+/* SHOW */
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* SUCCESS (add) */
+.toast.success {
+ color: #b9ff00;
+}
+
+/* REMOVE */
+.toast.remove {
+  color: red;
 }
