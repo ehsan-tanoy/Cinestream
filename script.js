@@ -50,6 +50,15 @@ searchToggleBtn.addEventListener("click", () => {
   }
 });
 
+homeInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const query = homeInput.value.trim();
+
+    if (!query) return;
+
+    window.location.href = `search-result.html?query=${query}`;
+  }
+});
 
 function toggleLanguages() {
   const list = document.getElementById('languageList');
