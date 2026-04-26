@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00ccff" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Search Results</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 🔝 HEADER -->
+  <header class="navbar">
+      <div class="menu" id="menu">
+        <span class="material-symbols-rounded">
+menu
+</span>
+    </div>
+    <div class="logo">CINESTREAM</div>
+    <button class="search" id="homeSearchBtn">
+            <span class="material-symbols-rounded icon">
+search
+</span>
+    </button> 
+  </header>
+  
+ <div class="menu-page" id="menuPage">
+      <div style="margin-bottom: 15px;display:flex;align-items: center;justify-content: space-between;">
+          <div id="wList">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="m480-240-168 72q-40 17-76-6.5T200-241v-519q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v519q0 43-36 66.5t-76 6.5l-168-72Z"/></svg>
+
+          <h4>Watchlist</h4>
+          </div>
+          
+          
+      </div>
+      <ul>
+          
+          <li><span onclick="goGenre('actWatchlisttion</span></li>
+<li><span onclick="goGenre('adventure')">Adventure</span></li>
+<li><span onclick="goGenre('animation')">Animation</span></li>
+<li><span onclick="goGenre('comedy')">Comedy</span></li>
+<li><span onclick="goGenre('crime')">Crime</span></li>
+<li><span onclick="goGenre('documentary')">Documentary</span></li>
+<li><span onclick="goGenre('drama')">Drama</span></li>
+<li><span onclick="goGenre('family')">Family</span></li>
+<li><span onclick="goGenre('fantasy')">Fantasy</span></li>
+<li><span onclick="goGenre('history')">History</span></li>
+<li><span onclick="goGenre('horror')">Horror</span></li>
+<li><span onclick="goGenre('music')">Music</span></li>
+<li><span onclick="goGenre('mystery')">Mystery</span></li>
+<li><span onclick="goGenre('romance')">Romance</span></li>
+<li><span onclick="goGenre('science_fiction')">Science Fiction</span></li>
+<li><span onclick="goGenre('thriller')">Thriller</span></li>
+<li><span onclick="goGenre('war')">War</span></li>
+<li><span onclick="goGenre('western')">Western</span></li>
+<li><span onclick="goGenre('tv_movie')">TV Movie</span></li>
+      </ul>
+  </div>
+  
+  <div class="menu-overlay">
+      
+  </div>
+  
+  
+  <main class="search-result-page">
+
+    <!-- 🎯 TITLE -->
+    <h3 id="resultTitle" class="search-title" style="text-transform: capitalize;"></h3>
+
+    <!-- 🎬 GRID -->
+    <div id="resultGrid" class="movie-grid"></div>
+
+    <!-- ❌ NO RESULT -->
+    <div id="noResult" class="no-result">No results found</div>
+
+  </main>
+<div id="toast" class="toast"></div>
+  <script src="search-result.js"></script>
+</body>
+</html>
