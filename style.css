@@ -378,7 +378,7 @@ h2 {
 
 .hero-wrapper {
   display: flex;
-  gap: 15px;
+  gap: 14px;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -390,7 +390,7 @@ h2 {
 
 /* 🎥 HERO CARD */
 .hero-card {
-  width: 77%; /* 1 full + next peek */
+  width: 78%; /* 1 full + next peek */
   height: 300px;
   border-radius: 12px;
   overflow: hidden;
@@ -1167,7 +1167,9 @@ padding: 18px 17px 16px 17px;
     height: 420px;
     border-radius: 16px;
   }
-
+  .hero-btn {
+    display: block;
+  }
   .hero-overlay {
     padding: 20px;
   }
