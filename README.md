@@ -1,37 +1,122 @@
-CineStream — Personal Movie Streaming Platform
+# CineStream
 
-CineStream is a modern, mobile-first movie streaming web application inspired by premium OTT platforms like Netflix and Cinefreak. Built using HTML, CSS, and Vanilla JavaScript, the platform focuses on a smooth, app-like user experience with a dark cinematic interface, responsive layout, and dynamic movie discovery powered by the TMDB API.
+CineStream is a modern OTT-style streaming UI built with HTML, CSS, and Vanilla JavaScript. Inspired by Netflix and Prime Video, it provides a smooth mobile-first experience for browsing Movies and Web Series using TMDB API.
 
-The project is designed as a personal streaming platform where movies can be explored, searched, saved to a watchlist, and streamed externally using intent-based playback links.
 
-Features
+---
 
-- Mobile-first responsive UI
-- Modern dark theme with neon accent styling
-- Dynamic movie data powered by TMDB API
-- Hero slider with gesture support and auto-scroll
-- Trending, language-based, anime, and category sections
-- Live search with floating results
-- Dedicated search result page with infinite scrolling
-- Movie details page with trailer, cast, genres, and similar recommendations
-- Watchlist system using localStorage
-- Bookmark toggle with toast feedback
-- Skeleton loading animations for smooth UX
-- Infinite scroll for genre and language exploration pages
-- Scroll-to-top button for improved navigation
-- Optimized for performance with lazy-loaded images
+## Features
 
-Tech Stack
+### Movies
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- TMDB API
-- LocalStorage
-- Intent-based external media playback
+Hero slider with gesture support
 
-Purpose
+Trending, Anime, Language sections
 
-CineStream was built as a personal streaming UI project to explore modern frontend development, responsive design, API integration, and OTT-style user experience architecture without relying on heavy frameworks.
+Search + Live results
 
-The project focuses on creating a clean, expandable, and scalable frontend foundation that can later evolve into a full streaming platform.
+Movie Details page
+
+Infinite scroll
+
+
+### Series
+
+Dedicated Series homepage
+
+OTT Originals (Netflix, Prime, Apple TV+, Disney+, HBO Max)
+
+Bangla OTT Originals (Hoichoi, Bongo, Chorki)
+
+Series Details page with seasons & episodes
+
+Episode skeleton loading
+
+
+### Search System
+
+Movie + Series search pages
+
+Genre, Language & OTT filtering
+
+Infinite scroll for explore pages
+
+
+### Watchlist
+
+Unified watchlist for Movies + Series
+
+LocalStorage support
+
+Bookmark toggle + toast feedback
+
+
+### UI / UX
+
+Dark premium theme
+
+Mobile-first responsive layout
+
+Skeleton loading
+
+Smooth animations
+
+Scroll-to-top button
+
+Infinite hero carousel
+
+
+
+---
+
+## Tech Stack
+
+HTML5
+
+CSS3
+
+Vanilla JavaScript
+
+TMDB API
+
+LocalStorage
+
+
+
+---
+
+## Project Structure
+
+index.html
+
+series.html
+
+search-result.html
+
+series-search-result.html
+
+details.html
+
+series-details.html
+
+watchlist.html
+
+
+style.css
+
+script.js
+
+series.js
+
+details.js
+
+series-details.js
+
+watchlist.js
+
+
+---
+
+## About
+
+CineStream is a personal streaming platform project focused on modern OTT UI design, API integration, and smooth frontend user experience.
