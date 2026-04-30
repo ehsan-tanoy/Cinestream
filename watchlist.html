@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#00ccff" />
+  <title>Watchlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+ <header class="navbar">
+   <div class="menu" onclick="window.history.back()"><span class="material-symbols-rounded">
+arrow_back
+</span></div>
+   <div class="logo">WATCH LIST</div>  
+   <div class="menu" onclick=' window.location.href = "index.html"; '><span class="material-symbols-rounded">
+home
+</span></div>
+ </header> 
+
+
+
+<main style="margin-top:72px; padding:14px;">
+  <div id="watchGrid" class="movie-grid"></div>
+</main>
+
+<script src="watchlist.js"></script>
+</body>
+</html>

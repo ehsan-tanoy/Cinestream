@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#00ccff" />
+  <title>CINESTREAM</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar" >
+    
+        <div class="menu" id="menu">
+        <span class="material-symbols-rounded">
+menu
+</span>
+    </div>
+    <div class="logo" onclick=' window.location.href = "index.html"; '>CINESTREAM</div>
+    
+  
+  <button class="search" id="homeSearchBtn">
+            <span class="material-symbols-rounded icon">
+search
+</span>
+    </button> 
+  </header>
+  
+  <div class="menu-page" id="menuPage">
+      <div style="margin-bottom: 6px;display:flex;align-items: center;justify-content: space-between;flex-direction:column;gap: 10px">
+          <div id="wList">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="m480-240-168 72q-40 17-76-6.5T200-241v-519q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v519q0 43-36 66.5t-76 6.5l-168-72Z"/></svg>
+
+          <h4>Watchlist</h4>
+          </div>
+                             
+          
+        <!-- 
+        <div class="language-box">
+  <div class="language-header" onclick="toggleLanguages()">
+    <span>Languages</span>
+    <span id="arrow">
+         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M459-381 314-526q-3-3-4.5-6.5T308-540q0-8 5.5-14t14.5-6h304q9 0 14.5 6t5.5 14q0 2-6 14L501-381q-5 5-10 7t-11 2q-6 0-11-2t-10-7Z"/> </svg></span>
+  </div> 
+
+  <div class="language-list" id="languageList">
+    <div class="language-item" onclick="goLanguage('en')">English Movies</div>
+    <div class="language-item" onclick="goLanguage('hi')">Hindi Movies</div>
+    <div class="language-item" onclick="goLanguage('ta')">Tamil Movies</div>
+    <div class="language-item" onclick="goLanguage('bn')">Bangla Movies</div>
+  </div>
+</div>
+         -->  
+      
+    </div> 
+      
+     
+      <ul>
+          <li style="font-size: 15px;font-weight: 600; margin-bottom: 10px">Genre:</li>
+          <li><span onclick="goGenre('action')">Action</span></li>
+<li><span onclick="goGenre('adventure')">Adventure</span></li>
+<li><span onclick="goGenre('animation')">Animation</span></li>
+<li><span onclick="goGenre('anime')">Anime</span></li>
+<li><span onclick="goGenre('comedy')">Comedy</span></li>
+<li><span onclick="goGenre('crime')">Crime</span></li>
+<li><span onclick="goGenre('documentary')">Documentary</span></li>
+<li><span onclick="goGenre('drama')">Drama</span></li>
+<li><span onclick="goGenre('family')">Family</span></li>
+<li><span onclick="goGenre('fantasy')">Fantasy</span></li>
+<li><span onclick="goGenre('history')">History</span></li>
+<li><span onclick="goGenre('horror')">Horror</span></li>
+<li><span onclick="goGenre('music')">Music</span></li>
+<li><span onclick="goGenre('mystery')">Mystery</span></li>
+<li><span onclick="goGenre('romance')">Romance</span></li>
+<li><span onclick="goGenre('science_fiction')">Science Fiction</span></li>
+<li><span onclick="goGenre('thriller')">Thriller</span></li>
+<li><span onclick="goGenre('war')">War</span></li>
+<li><span onclick="goGenre('western')">Western</span></li>
+<li><span onclick="goGenre('tv_movie')">TV Movie</span></li>
+      </ul>
+  </div>
+  
+  <div class="menu-overlay">
+      
+  </div>
+  <!-- 🔍 FLOATING SEARCH BAR -->
+<div class="floating-search" id="floatingSearch">
+
+  <div class="search-bar">
+    <input type="text" id="homeSearchInput" placeholder="Search movies..." />
+    <button id="rightSearchBtn">Search</button>
+  </div>
+
+  <!-- ⚡ LIVE RESULTS -->
+  <div id="homeLiveResults" class="home-live-results"></div>
+
+</div>
+
+  <main id="app" >
+      
+    <section class="hero-section">
+  
+  
+  
+  <button class="hero-btn left" id="heroPrev">
+      <span class="material-symbols-rounded">
+arrow_back_ios
+</span>
+  </button>
+  <button class="hero-btn right" id="heroNext">
+      <span class="material-symbols-rounded">
+arrow_forward_ios
+</span>
+  </button>
+  
+  
+ 
+  <div class="hero-wrapper" id="heroWrapper"></div>
+  <div id="heroDots"></div>
+
+</section>
+
+
+    <section>
+        <div class="content-btn" id="contentBtn">
+      <button class="movies-btn" id="moviesBtn">Movies</button>
+      <button class="tv-btn active" id="tvBtn">Series</button>
+  </div>
+      <h2>Trending</h2>
+      <div class="hd-line"></div>
+      <div class="movie-grid" id="trending"></div>
+    </section>
+    
+    <section class="section">
+        <div style="display:flex;align-items:center;justify-content: space-between;margin-bottom:25px;backgrund:blue">
+            <div>
+                <h2 style="font-size: 22px;">OTT Originals</h2>
+                <div class="hd-line" style="background:#ffc81e;margin-bottom:0px;"></div>
+            </div>
+           
+           <img src="icons/net.png" alt="" style="width:40px"> 
+        </div>
+  
+  
+  <div class="ott-tabs">
+    <button class="ott-btn active" data-provider="213">Netflix</button>
+    <button class="ott-btn" data-provider="49">HBO Max</button>
+    <button class="ott-btn" data-provider="1024">Prime Video</button>
+    <button class="ott-btn" data-provider="2552">Apple TV+</button>
+    <button class="ott-btn" data-provider="2739">Disney+</button>
+    <button class="ott-btn" data-provider="453">Hulu</button>
+    
+    
+  </div>
+
+  <div id="ottSeries" class="movie-grid"></div>
+
+  <div class="see-more-wrap">
+    <button id="ottSeeMore" class="see-more-btn">
+      See More
+    </button>
+  </div>
+</section>
+
+<section class="section">
+  <h2 style="font-size: 22px;">Bangla Originals</h2>
+<div class="hd-line" style="background:#ffc81e"></div>
+  <div class="ott-tabs">
+    <button class="bangla-ott-btn active" data-provider="2139">
+      Hoichoi
+    </button>
+
+    <button class="bangla-ott-btn" data-provider="7035">
+      Bongo
+    </button>
+
+    <button class="bangla-ott-btn" data-provider="5119">
+      Chorki
+    </button>
+  </div>
+
+  <div id="banglaOttSeries" class="movie-grid"></div>
+
+  <div class="see-more-wrap">
+    <button id="banglaOttSeeMore" class="see-more-btn">
+      See More
+    </button>
+  </div>
+</section>
+
+    
+
+
+ <section class="section">
+  <h2>Anime Series</h2>
+ <div class="hd-line"></div>
+  <div id="anime" class="movie-grid"></div>
+
+  <div class="see-more-wrap">
+    <button onclick="goAnime('anime')" class="see-more-btn">
+  See More
+</button>
+  </div>
+</section>
+
+    <section>
+      <h2>New Releases</h2>
+      <div class="hd-line"></div>
+      <div class="movie-grid" id="new"></div>
+    </section>
+
+  </main>
+
+  <div class="loader-wrapper hidden" id="loader">
+  <div class="loader-icon"></div>
+</div>
+  
+  <button id="scrollTopBtn">
+  <span class="material-symbols-rounded">arrow_upward</span>
+</button>
+  <div id="toast" class="toast"></div>
+  <script src="series.js"></script>
+</body>
+</html>
