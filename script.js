@@ -161,7 +161,7 @@ const GENRE_MAP = {
 };
 
 
-let heroIndex = 1;
+let heroIndex = 2;
 let heroMovies = [];
 let heroInterval;
 let isAnimating = false;
@@ -252,7 +252,7 @@ function moveSlide(direction = 1) {
   wrapper.scrollLeft = heroIndex * cardWidth;
 
   // ✅ Dot সাথে সাথে change হবে
-  const realIndex = ((heroIndex - 1 + heroMovies.length) % heroMovies.length);
+  const realIndex = ((heroIndex - 2 + heroMovies.length) % heroMovies.length);
   const dots = document.querySelectorAll(".hero-dot");
   dots.forEach((d, i) => d.classList.toggle("active", i === realIndex));
 
@@ -282,7 +282,7 @@ function initDotIndicators() {
     if (i === 0) dot.classList.add("active");
     dot.addEventListener("click", () => {
       if (isAnimating) return;
-      const diff = (i + 1) - heroIndex;
+      const diff = (i + 2) - heroIndex;
       moveSlide(diff);
     });
     dotsContainer.appendChild(dot);
