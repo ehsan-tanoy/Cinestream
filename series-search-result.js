@@ -172,7 +172,7 @@ function toggleWatchlist(show) {
       type: "Series",
       title: show.name,
       poster: show.poster_path,
-      year: series.first_air_date?.split("-")[0],
+      year: show.first_air_date?.split("-")[0],
       rating: show.vote_average
     });
   }
