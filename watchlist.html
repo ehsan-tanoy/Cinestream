@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#00ccff" />
+  <title>Watchlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+ <header class="navbar">
+   <div class="menu" onclick="window.history.back()"><span class="material-symbols-rounded">
+arrow_back
+</span></div>
+   <div class="logo">WATCH LIST</div>  
+   <div class="menu" onclick=' window.location.href = "index.html"; '><span class="material-symbols-rounded">
+home
+</span></div>
+ </header> 
+
+
+
+<main style="margin-top:72px; padding:14px;">
+  <div id="watchGrid" class="movie-grid"></div>
+  <div id="emptyWatchlist" class="empty-watchlist">
+      <img src="icons/watch.svg" style="width: 350px;">
+  <h5 style="margin-top: -60px;color:#ccc;opacity:0.5;">No item added</h5>
+</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+<script src="watchlist.js"></script>
+
+</body>
+</html>
