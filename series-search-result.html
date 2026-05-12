@@ -77,3 +77,46 @@ arrow_back_ios_new
 </body>
 
 </html>
+
+  <!-- ⚡ LIVE RESULTS -->
+  <div id="homeLiveResults" class="home-live-results"></div>
+
+</div>
+
+  <!-- TITLE -->
+  <section class="section" style="margin-top: 35px">
+
+    <h2 id="resultTitle" class="search-title" style="text-transform: capitalize;"></h2>
+
+    <div id="resultGrid" class="movie-grid"></div>
+
+    <div id="noResult" class="no-result">
+      
+      <div id="lottie-animation" style="width:300px; height:300px;margin-right:-1px;"></div>
+      <h2 style="font-size:12px;margin-top:-20px;color:434343;opacity:0.6;">No series found</h2>
+    </div>
+
+  </section>
+
+  <!-- LOADER -->
+  <div class="loader-wrapper2 hidden" id="loader">
+  <div class="loader-icon"></div>
+</div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+  <script src="series-search-result.js"></script>
+  <script>
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-animation'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'icons/not.json' // তোমার JSON file path
+    });
+</script>
+</body>
+
+</html>
