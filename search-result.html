@@ -103,3 +103,72 @@ movie
   </script>
 </body>
 </html>
+          <h4>Watchlist</h4>
+          </div>
+          
+          
+      </div>
+      <ul>
+          
+          <li><span onclick="goGenre('actWatchlisttion</span></li>
+<li><span onclick="goGenre('adventure')">Adventure</span></li>
+<li><span onclick="goGenre('animation')">Animation</span></li>
+<li><span onclick="goGenre('comedy')">Comedy</span></li>
+<li><span onclick="goGenre('crime')">Crime</span></li>
+<li><span onclick="goGenre('documentary')">Documentary</span></li>
+<li><span onclick="goGenre('drama')">Drama</span></li>
+<li><span onclick="goGenre('family')">Family</span></li>
+<li><span onclick="goGenre('fantasy')">Fantasy</span></li>
+<li><span onclick="goGenre('history')">History</span></li>
+<li><span onclick="goGenre('horror')">Horror</span></li>
+<li><span onclick="goGenre('music')">Music</span></li>
+<li><span onclick="goGenre('mystery')">Mystery</span></li>
+<li><span onclick="goGenre('romance')">Romance</span></li>
+<li><span onclick="goGenre('science_fiction')">Science Fiction</span></li>
+<li><span onclick="goGenre('thriller')">Thriller</span></li>
+<li><span onclick="goGenre('war')">War</span></li>
+<li><span onclick="goGenre('western')">Western</span></li>
+<li><span onclick="goGenre('tv_movie')">TV Movie</span></li>
+      </ul>
+  </div>
+  
+  <div class="menu-overlay">
+      
+  </div>
+  
+  
+  <main class="search-result-page">
+
+    <!-- 🎯 TITLE -->
+    <h3 id="resultTitle" class="search-title" style="text-transform: capitalize;"></h3>
+
+    <!-- 🎬 GRID -->
+    <div id="resultGrid" class="movie-grid"></div>
+
+    <!-- ❌ NO RESULT -->
+    <div id="noResult" class="no-result" style="align-items: center;">
+      
+      <div id="lottie-animation" style="width:300px; height:300px;margin-right:-1px;"></div>
+      <h2 style="font-size:12px;margin-top:-20px;color:434343;opacity:0.6;">No movies found</h2>
+    </div>
+
+  </main>
+  
+  <!-- LOADER -->
+  <div class="loader-wrapper2 hidden" id="loader">
+  <div class="loader-icon"></div>
+</div>
+<div id="toast" class="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+  <script src="search-result.js"></script>
+  <script>
+      lottie.loadAnimation({
+      container: document.getElementById('lottie-animation'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'icons/not.json' // তোমার JSON file path
+    });
+  </script>
+</body>
+</html>
