@@ -521,7 +521,7 @@ async function setupPlayButtons(title, year) {
   playBtn.disabled = true;
   playBtn.style.opacity = "0.6";
   playBtn.innerHTML = `
-    <span class="material-symbols-rounded" style="font-size:30px">hourglass_top</span>
+    <span class="material-symbols-rounded" style="font-size:26px">hourglass_top</span>
     Searching...
   `;
 
@@ -546,7 +546,7 @@ async function setupPlayButtons(title, year) {
     playBtn.style.opacity = "0.4";
     playBtn.style.cursor  = "not-allowed";
     playBtn.innerHTML = `
-      <span class="material-symbols-rounded" style="font-size:30px">block</span>
+      <span class="material-symbols-rounded" style="font-size:26px">block</span>
       Not Available
     `;
     
