@@ -421,7 +421,7 @@ async function loadSeason(seasonNumber) {
     const epData = epMap[epKey] || null;
     const link   = epData?.link   || null;
     const quality= epData?.quality|| null;
-    const size   = epData?.size   ? `${epData.size} GB` : null;
+    const size   = epData?.size   ? `${epData.size}` : null;
 
     const div = document.createElement("div");
     div.className = "episode-card";
