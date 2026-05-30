@@ -632,8 +632,8 @@ async function loadTrending() {
 
   try {
     const [res1, res2] = await Promise.all([
-      fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=1`),
-      fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=2`)
+      fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=1`),
+      fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=2`)
     ]);
 
     const data1 = await res1.json();
