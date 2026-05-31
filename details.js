@@ -565,27 +565,9 @@ function addFTPButtons(dfData, fmData) {
 }
 
 function openVidking(tmdbId) {
-  const url = `https://www.vidking.net/embed/movie/${tmdbId}?color=00ccff&autoPlay=true&nextEpisode=true&episodeSelector=true`;
-  // নতুন full screen page এ open করো
-  const html = `<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#000;width:100vw;height:100vh;overflow:hidden}
-  iframe{width:100%;height:100%;border:none;display:block}
-</style>
-</head>
-<body>
-<iframe src="${url}" width="100%" height="600" frameborder="0" allowfullscreen> </iframe>
-</body>
-</html>`;
-  const blob   = new Blob([html], { type: 'text/html' });
-  const blobUrl= URL.createObjectURL(blob);
-  window.open(blobUrl, '_blank');
+  const url = `https://www.vidking.net/embed/movie/${tmdbId}?color=00ccff&autoPlay=true`;
+  window.open(url, '_blank');
 }
-
 function openWithIntent(link) {
   const isAndroid = /android/i.test(navigator.userAgent);
   if (isAndroid) {
