@@ -565,7 +565,7 @@ function addFTPButtons(dfData, fmData) {
 }
 
 function openVidking(tmdbId) {
-  const url = `https://www.vidking.net/embed/movie/${tmdbId}?color=e50914&autoPlay=true&nextEpisode=true&episodeSelector=true`;
+  const url = `https://www.vidking.net/embed/movie/${tmdbId}?color=00ccff&autoPlay=true&nextEpisode=true&episodeSelector=true`;
   // নতুন full screen page এ open করো
   const html = `<!DOCTYPE html>
 <html>
@@ -578,7 +578,7 @@ function openVidking(tmdbId) {
 </style>
 </head>
 <body>
-<iframe src="${url}" allowfullscreen allow="autoplay; fullscreen"></iframe>
+<iframe src="${url}" width="100%" height="600" frameborder="0" allowfullscreen> </iframe>
 </body>
 </html>`;
   const blob   = new Blob([html], { type: 'text/html' });
