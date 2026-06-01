@@ -944,7 +944,7 @@ async function loadContinueWatching() {
 
       const card = document.createElement("div");
       card.style.cssText = `
-        min-width: 80%; max-width: 80%;
+        min-width: 90%; max-width: 90%;
         flex-shrink: 0; border-radius: 12px;
         overflow: hidden; background: #1a1a2e;
         cursor: pointer; position: relative;
