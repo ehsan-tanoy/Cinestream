@@ -842,6 +842,8 @@ async function loadContinueWatching() {
       const title    = info.title || info.name || "";
       const pct      = Math.round(item.progress);
       const mins     = Math.round(item.currentTime / 60);
+      const epInfo = item.season && item.episode
+        ? `S${String(item.season).padStart(2,'0')}E${String(item.episode).padStart(2,'0')} · ` : '';
 
       const card = document.createElement("div");
       card.style.cssText = `
@@ -876,7 +878,7 @@ async function loadContinueWatching() {
           <p style="font-family:Inter;font-weight:700;font-size:14px;color:#fff;
                     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${title}</p>
           <p style="font-family:Inter;font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px;">
-            ${mins} min watched · ${pct}%
+            ${epInfo} ${mins} min watched · ${pct}%
           </p>
         </div>
       `;
