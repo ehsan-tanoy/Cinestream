@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+  iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+</style>
+</head>
+<body>
+<script>
+  const p        = new URLSearchParams(location.search);
+  const type     = p.get('type')     || 'movie';
+  const id       = p.get('id');
+  const s        = p.get('s')        || '1';
+  const e        = p.get('e')        || '1';
+  const progress = p.get('progress') || '0';
+
+  let src;
+  if (type === 'tv') {
+    src = `https://www.vidking.net/embed/tv/${id}/${s}/${e}?color=00ccff&autoPlay=true&nextEpisode=true&episodeSelector=true&progress=${progress}`;
+  } else {
+    src = `https://www.vidking.net/embed/movie/${id}?color=00ccff&autoPlay=true&progress=${progress}`;
+  }
+  
+window.addEventListener('message', (event) => {
+  console.log('MSG:', event.data);
+});
+
+  const iframe = document.createElement('iframe');
+  iframe.src             = src;
+  iframe.allowFullscreen = true;
+  iframe.allow           = 'autoplay; fullscreen; picture-in-picture';
+  document.body.appendChild(iframe);
+
+  // Progress directly localStorage এ save করো
+  const CW_KEY = "cinestream_continue";
+
+  function saveCW(item) {
+    try {
+      let data = JSON.parse(localStorage.getItem(CW_KEY) || "[]");
+      const idx = data.findIndex(d => d.id === item.id);
+      if (idx >= 0) data[idx] = { ...data[idx], ...item };
+      else data.unshift(item);
+      localStorage.setItem(CW_KEY, JSON.stringify(data.slice(0, 20)));
+    } catch(e) {}
+  }
+
+  window.addEventListener('message', (event) => {
+    try {
+      const msg = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+      if (msg?.type !== "PLAYER_EVENT") return;
+
+      const d = msg.data;
+      if (!d.id || !d.duration || d.progress < 5 || d.progress > 90) return;
+      if (d.event !== "timeupdate") return;
+
+      saveCW({
+        id:          String(d.id),
+        mediaType:   d.mediaType || type,
+        currentTime: d.currentTime,
+        duration:    d.duration,
+        progress:    d.progress,
+        season:      d.season || parseInt(s),
+        episode:     d.episode || parseInt(e),
+        timestamp:   Date.now()
+      });
+    } catch(e) {}
+  });
+</script>
+</body>
+</html>
