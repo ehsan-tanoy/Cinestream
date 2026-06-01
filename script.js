@@ -842,7 +842,7 @@ async function loadContinueWatching() {
       const title    = info.title || info.name || "";
       const pct      = Math.round(item.progress);
       const mins     = Math.round(item.currentTime / 60);
-      const epInfo = item.season && item.episode
+      const epInfo   = item.mediaType === "tv"
         ? `S${String(item.season).padStart(2,'0')}E${String(item.episode).padStart(2,'0')} · ` : '';
 
       const card = document.createElement("div");
