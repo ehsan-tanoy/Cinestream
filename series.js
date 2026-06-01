@@ -1,5 +1,6 @@
 const API_KEY = "d24074791ab99994324a6950e6e0a31a";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const COVER_IMG_URL = "https://image.tmdb.org/t/p/w780";
 
 const HERO_API = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`;
 
@@ -935,7 +936,7 @@ async function loadContinueWatching() {
       );
       const info = await res.json();
 
-      const poster = info.poster_path ? IMG_URL + info.poster_path : "blank_poster.png";
+      const poster = info.backdrop_path ? COVER_IMG_URL + info.backdrop_path : "blank_poster.png";
       const title  = info.name || "";
       const pct    = Math.round(item.progress);
       const mins   = Math.round(item.currentTime / 60);
@@ -974,7 +975,7 @@ async function loadContinueWatching() {
 
       card.onclick = () => {
         const t   = Math.floor(item.currentTime);
-        const url = `player.html?type=tv&id=${item.id}&s=${item.season||1}&e=${item.episode||1}&progress=${t}`;
+        const url = `stream.html?type=tv&id=${item.id}&s=${item.season||1}&e=${item.episode||1}&progress=${t}`;
         window.open(url, '_blank');
       };
 
